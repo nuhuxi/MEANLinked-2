@@ -1,9 +1,15 @@
-body,
+body .form-group,
+.navbar-form .form-group {
+  margin-left: 10px;
+}
+body button,
+.navbar-form button {
+  margin-left: 10px;
+}
 .navbar-header a.navbar-brand {
   margin-top: -15px;
   margin-bottom: -20px;
 }
-body h6,
 .navbar-header a.navbar-brand h6 {
   color: #ccc;
 }
