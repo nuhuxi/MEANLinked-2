@@ -39,7 +39,7 @@ db.once('open', function callback(){
 
 
 app.get('/partials/*', function(req, res) {
-	res.render('partials/' + req.params[0]);
+	res.render('../../public/app/' + req.params[0]);
 });
 
 app.get('*', function(req, res){
