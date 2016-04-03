@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'), 
+var mongoose = require('mongoose'),
 	crypto = require('crypto');
 
 module.exports = function(config){
@@ -10,11 +10,12 @@ module.exports = function(config){
 	});
 
 	var userSchema = mongoose.Schema({
-		firstName: String, 
-		lastName: String, 
-		userName: String, 
-		salt: String, 
-		hashed_pwd: String
+		firstName: String,
+		lastName: String,
+		userName: String,
+		salt: String,
+		hashed_pwd: String,
+		roles: [String]
 	});
 
 	userSchema.methods = {
@@ -30,11 +31,11 @@ module.exports = function(config){
 
 			salt = createSalt();
 			hash = hashPwd(salt, 'mark');
-			User.create({firstName:'Mark', lastName: 'Keckeis', userName: 'mark', salt: salt, hashed_pwd: hash});
+			User.create({firstName:'Mark', lastName: 'Keckeis', userName: 'mark', salt: salt, hashed_pwd: hash, roles: ['admin']});
 
 			salt = createSalt();
 			hash = hashPwd(salt, 'mardi');
-			User.create({firstName:'Mardi', lastName: 'Keckeis', userName: 'mardi', salt: salt, hashed_pwd: hash});
+			User.create({firstName:'Mardi', lastName: 'Keckeis', userName: 'mardi', salt: salt, hashed_pwd: hash, roles: []});
 			salt = createSalt();
 			hash = hashPwd(salt, 'luke');
 			User.create({firstName:'Luke', lastName: 'Keckeis', userName: 'luke', salt: salt, hashed_pwd: hash});
@@ -58,7 +59,6 @@ function hashPwd(salt, pwd) {
   var hmac = crypto.createHmac('sha1', salt);
   hmac.setEncoding('hex');
   hmac.write(pwd);
-    console.log("hmac is " + hmac);
   hmac.end();
   return hmac.read();
 }
@@ -70,9 +70,3 @@ function hashPwd(salt, pwd) {
 
 }
 */
-
-
-
-
-
-
