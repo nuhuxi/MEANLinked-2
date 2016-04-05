@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-	crypto = require('crypto');
+	encrypt = require('../utilities/encryption');
 
 module.exports = function(config){
 	mongoose.connect(config.db);
@@ -20,7 +20,7 @@ module.exports = function(config){
 
 	userSchema.methods = {
 		authenticate: function(passwordToMatch){
-			return hashPwd(this.salt, passwordToMatch) === this.hashed_pwd;
+			return encrypt.hashPwd(this.salt, passwordToMatch) === this.hashed_pwd;
 		}
 	};
 	var User = mongoose.model('User', userSchema);
@@ -29,44 +29,24 @@ module.exports = function(config){
 		if(collection.length === 0){
 			var salt, hash;
 
-			salt = createSalt();
-			hash = hashPwd(salt, 'mark');
+			salt = encrypt.createSalt();
+			hash = encrypt.hashPwd(salt, 'mark');
 			User.create({firstName:'Mark', lastName: 'Keckeis', username: 'mark', salt: salt, hashed_pwd: hash, roles: ['admin']});
 
-			salt = createSalt();
-			hash = hashPwd(salt, 'mardi');
+			salt = encrypt.createSalt();
+			hash = encrypt.hashPwd(salt, 'mardi');
 			User.create({firstName:'Mardi', lastName: 'Keckeis', username: 'mardi', salt: salt, hashed_pwd: hash, roles: []});
-			salt = createSalt();
-			hash = hashPwd(salt, 'luke');
+			salt = encrypt.createSalt();
+			hash = encrypt.hashPwd(salt, 'luke');
 			User.create({firstName:'Luke', lastName: 'Keckeis', username: 'luke', salt: salt, hashed_pwd: hash});
 
-			salt = createSalt();
-			hash = hashPwd(salt, 'max');
+			salt = encrypt.createSalt();
+			hash = encrypt.hashPwd(salt, 'max');
 			User.create({firstName:'Max', lastName: 'Keckeis', username: 'max', salt: salt, hashed_pwd: hash});
 
-			salt = createSalt();
-			hash = hashPwd(salt, 'grace');
+			salt = encrypt.createSalt();
+			hash = encrypt.hashPwd(salt, 'grace');
 			User.create({firstName:'Grace', lastName: 'Keckeis', username: 'grace', salt: salt, hashed_pwd: hash});
 		}
 	});
 };
-
-function createSalt(){
-	return crypto.randomBytes(128).toString('base64');
-}
-
-function hashPwd(salt, pwd) {
-  var hmac = crypto.createHmac('sha1', salt);
-  hmac.setEncoding('hex');
-  hmac.write(pwd);
-  hmac.end();
-  return hmac.read();
-}
-/*
-// This is the code he says is deprecated
-function hashPwd(salt, pwd) {
-	var hmac = crypto.createHmac('sha1', salt);
-	return hmac.update(pwd).digest('hex');
-
-}
-*/

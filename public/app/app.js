@@ -13,8 +13,9 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
 	$routeProvider
 		.when('/', {templateUrl: '/partials/main/main', controller: 'mvMainCtrl'})
 		.when('/admin/users', {templateUrl: '/partials/admin/user-list',
-			controller: 'mvUserListCtrl', resolve: routeRuleChecks.admin
-		});
+			controller: 'mvUserListCtrl', resolve: routeRuleChecks.admin})
+		.when('/signup', {templateUrl: '/partials/account/signup',
+			controller: 'mvSignupCtrl'})
 });
 
 angular.module('app').run(function($rootScope, $location) {
