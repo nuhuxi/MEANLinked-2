@@ -4,8 +4,8 @@ angular.module('app').controller('mvSignupCtrl', function($scope, $location, mvU
     var newUserData = {
         username: $scope.email,
         password: $scope.password,
-        firstName: $scope.firstName,
-        lastName: $scope.lastName
+        firstName: $scope.fname,
+        lastName: $scope.lname
     };
 
     mvAuth.createUser(newUserData).then(function(){
