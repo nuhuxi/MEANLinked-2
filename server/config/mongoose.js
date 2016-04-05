@@ -12,7 +12,7 @@ module.exports = function(config){
 	var userSchema = mongoose.Schema({
 		firstName: String,
 		lastName: String,
-		userName: String,
+		username: String,
 		salt: String,
 		hashed_pwd: String,
 		roles: [String]
@@ -31,22 +31,22 @@ module.exports = function(config){
 
 			salt = createSalt();
 			hash = hashPwd(salt, 'mark');
-			User.create({firstName:'Mark', lastName: 'Keckeis', userName: 'mark', salt: salt, hashed_pwd: hash, roles: ['admin']});
+			User.create({firstName:'Mark', lastName: 'Keckeis', username: 'mark', salt: salt, hashed_pwd: hash, roles: ['admin']});
 
 			salt = createSalt();
 			hash = hashPwd(salt, 'mardi');
-			User.create({firstName:'Mardi', lastName: 'Keckeis', userName: 'mardi', salt: salt, hashed_pwd: hash, roles: []});
+			User.create({firstName:'Mardi', lastName: 'Keckeis', username: 'mardi', salt: salt, hashed_pwd: hash, roles: []});
 			salt = createSalt();
 			hash = hashPwd(salt, 'luke');
-			User.create({firstName:'Luke', lastName: 'Keckeis', userName: 'luke', salt: salt, hashed_pwd: hash});
+			User.create({firstName:'Luke', lastName: 'Keckeis', username: 'luke', salt: salt, hashed_pwd: hash});
 
 			salt = createSalt();
 			hash = hashPwd(salt, 'max');
-			User.create({firstName:'Max', lastName: 'Keckeis', userName: 'max', salt: salt, hashed_pwd: hash});
+			User.create({firstName:'Max', lastName: 'Keckeis', username: 'max', salt: salt, hashed_pwd: hash});
 
 			salt = createSalt();
 			hash = hashPwd(salt, 'grace');
-			User.create({firstName:'Grace', lastName: 'Keckeis', userName: 'grace', salt: salt, hashed_pwd: hash});
+			User.create({firstName:'Grace', lastName: 'Keckeis', username: 'grace', salt: salt, hashed_pwd: hash});
 		}
 	});
 };
