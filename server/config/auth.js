@@ -3,7 +3,7 @@ var passport = require('passport'),
 	User = mongoose.model('User');
 
 exports.authenticate = function(req, res, next){
-	console.log("username is " + req.user);
+		req.body.username = req.body.username.toLowerCase();
 		var auth = passport.authenticate('local', function(err, user){
 			if(err) {return next(err);}
 			if(!user){res.send({success: false});}
