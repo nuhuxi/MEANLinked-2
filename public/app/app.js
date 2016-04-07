@@ -23,6 +23,8 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
 			controller: 'mvProfileCtrl', resolve: routeRoleChecks.user})
 		.when('/courses', {templateUrl: '/partials/courses/course-list',
 			controller: 'mvCourseListCtrl'})
+		.when('/courses/:id', {templateUrl: '/partials/courses/course-detail',
+			controller: 'mvCourseDetailCtrl'})
 });
 
 angular.module('app').run(function($rootScope, $location) {
