@@ -23,6 +23,12 @@ footer p {
   margin-top: 15px;
 margin-left
 }
+.top-padding-med {
+  padding-top: 10px;
+}
+.margin-left-med {
+  margin-left: 10px;
+}
 .toast-top-right {
   top: 90px;
 }
