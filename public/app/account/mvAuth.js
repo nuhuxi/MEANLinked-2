@@ -27,7 +27,7 @@ angular.module('app').factory('mvAuth', function($http, mvIdentity, $q, mvUser){
 			return dfd.promise;
 		},
 		updateCurrentUser: function(newUserData){
-			var defer = $q.dfd;
+			var dfd = $q.defer();
 
 			var clone = angular.copy(mvIdentity.currentUser);
 			clone.$update().then(function(){
@@ -36,7 +36,7 @@ angular.module('app').factory('mvAuth', function($http, mvIdentity, $q, mvUser){
 			}, function(response){
 				dfd.reject(response.data.reason);
 			});
-			return dfd.promise();
+			return dfd.promise;
 		},
 		logoutUser: function(){
 			var dfd = $q.defer();
