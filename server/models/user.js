@@ -49,4 +49,4 @@ function createDefaultUsers() {
     }
   });
 }
-exports.createDefaultusers = createDefaultUsers;
+exports.createDefaultUsers = createDefaultUsers;
