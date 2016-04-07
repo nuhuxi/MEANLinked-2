@@ -6,10 +6,10 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
 			auth: function(mvAuth) {
 				return mvAuth.authorizeCurrentUserForRoute('admin');
 			}},
-			user: {
-				auth: function(mvAuth) {
-					return mvAuth.authorizeAuthenticatedUserForRoute();
-				}}
+		user: {
+			auth: function(mvAuth) {
+				return mvAuth.authorizeAuthenticatedUserForRoute();
+			}}
 	}
 
 	$locationProvider.html5Mode(true);
@@ -21,6 +21,8 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
 			controller: 'mvSignupCtrl'})
 		.when('/profile', {templateUrl: '/partials/account/profile',
 			controller: 'mvProfileCtrl', resolve: routeRoleChecks.user})
+		.when('/courses', {templateUrl: '/partials/courses/course-list',
+			controller: 'mvCourseListCtrl'})
 });
 
 angular.module('app').run(function($rootScope, $location) {
