@@ -5,6 +5,3 @@ angular.module('app').factory('mvCourse', function($resource) {
 
   return CourseResource;
 });
-
-
-v
